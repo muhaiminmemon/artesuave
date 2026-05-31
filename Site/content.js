@@ -138,7 +138,7 @@ window.PORTFOLIO = {
       detail:
         "Scalable Node/Express REST API handling 10,000+ requests/day, deployed via Docker on Azure. React/Tailwind dashboard for real-time task progress and analytics.",
       stack: ["React", "Node.js", "Express", "Supabase", "GPT API", "Google Calendar", "Docker", "Azure"],
-      link: "https://github.com/muhaiminmemon",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7329637123983138818/",
       linkLabel: "Demo",
     },
   ],
