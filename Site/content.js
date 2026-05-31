@@ -10,7 +10,7 @@ window.PORTFOLIO = {
   linkedin: "muhaiminmemon",
   tagline: "Software & machine-learning engineer.",
   subtag:
-    "Third-year Computer Science student at the University of Toronto. I focus on machine learning and MLOps: training and evaluating models, then shipping and monitoring them in production. Most recently at Nokia R&D and Autodesk.",
+    "Third-year student at the University of Toronto. I focus on machine learning and MLOps: training and evaluating models, then shipping and monitoring them in production. Most recently at Nokia R&D and Autodesk.",
 
   // headline index — plain facts, not a sales pitch
   stats: [
