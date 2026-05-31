@@ -2,7 +2,7 @@
 
 A personal portfolio built as a **broadcast telemetry screen** — an F1 timing graphic crossed with a Swiss editorial poster. Every design choice is deliberate, and a lot of the personality is in details you only catch on a second look. This README is the decoder ring.
 
-**Live:** _add your URL here_ · **Stack:** Hand-written HTML / CSS / React (no framework build step)
+**Live:** muhaimin.fyi · **Stack:** Hand-written HTML / CSS / React (no framework build step)
 
 ---
 
