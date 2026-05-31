@@ -1,0 +1,120 @@
+/* ============================================================
+   PRELOADER — "Lights Out" belt-tie intro
+   F1 timing-screen ritual meets a BJJ belt cinching its knot.
+   Dark overlay, independent of site theme. ~1.7s, skippable.
+   ============================================================ */
+
+.preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: oklch(0.155 0.014 255);
+  color: oklch(0.96 0.005 85);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(18px, 4vw, 40px);
+  font-family: "Space Mono", ui-monospace, monospace;
+  overflow: hidden;
+  --acc: oklch(0.585 0.221 25);
+  --belt: oklch(0.97 0.006 85);
+  --tip: oklch(0.13 0.01 255);
+}
+body.preloading { overflow: hidden; }
+
+.preloader--done {
+  transform: translateY(-101%);
+  transition: transform 0.62s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* faint timing grid in the back */
+.preloader::before {
+  content: ""; position: absolute; inset: 0; opacity: 0.5;
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 78%);
+          mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 78%);
+}
+
+/* ---------- HUD ---------- */
+.pre__hud { display: flex; align-items: center; justify-content: space-between; gap: 16px; position: relative; z-index: 2; }
+.pre__hud span { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.7 0.012 255); }
+.pre__mark { display: inline-flex; align-items: center; gap: 10px; color: oklch(0.96 0.005 85) !important; }
+.pre__mark i { width: 13px; height: 13px; background: var(--acc); display: inline-block; }
+.pre__timer { color: oklch(0.96 0.005 85) !important; font-variant-numeric: tabular-nums; }
+
+.pre__hud--bottom { gap: 20px; }
+.pre__bar { flex: 1; height: 3px; background: oklch(1 0 0 / 0.12); position: relative; overflow: hidden; }
+.pre__bar-fill { position: absolute; inset: 0; background: var(--acc); transform: scaleX(0); transform-origin: left; animation: pre-bar 1.6s linear forwards; }
+.pre__hud--bottom span:last-child { color: var(--acc) !important; }
+@keyframes pre-bar { to { transform: scaleX(1); } }
+
+/* ---------- STAGE ---------- */
+.pre__stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; position: relative; z-index: 2; }
+.pre__label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.72 0.012 255); display: inline-flex; align-items: center; gap: 10px; }
+.pre__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); animation: pre-blink 1s steps(1) infinite; }
+@keyframes pre-blink { 50% { opacity: 0.15; } }
+
+/* ---------- THE BELT ---------- */
+.belt { position: relative; width: 300px; height: 184px; animation: belt-cinch 1.7s ease both; }
+@media (max-width: 520px) { .belt { transform: scale(0.8); } }
+
+/* horizontal band around the waist */
+.belt__band {
+  position: absolute; top: 60px; left: 0; right: 0; height: 30px;
+  background: var(--belt); border-radius: 6px;
+  box-shadow: inset 0 -6px 0 oklch(0.82 0.01 85);
+  transform: scaleX(0); transform-origin: center;
+  animation: belt-band 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* two tails, crossed into an X then hanging — the tell-tale of a tied belt.
+   Both anchored at center; one swings its tip left, the other right. */
+.belt__tail {
+  position: absolute; top: 86px; left: calc(50% - 12px);
+  width: 24px; height: 98px; background: var(--belt); border-radius: 6px;
+  box-shadow: inset 0 0 0 1px oklch(0.88 0.01 85);
+  transform-origin: top center;
+}
+.belt__tail::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30px;
+  background: var(--tip); border-radius: 0 0 6px 6px;
+}
+.belt__tail--l { z-index: 2; transform: rotate(-11deg) scaleY(0); animation: belt-tail-l 0.5s 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.belt__tail--r { z-index: 1; transform: rotate(11deg) scaleY(0); animation: belt-tail-r 0.5s 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* the knot — a rounded slab with a strap tucked vertically through it (over-under weave) */
+.belt__knot {
+  position: absolute; top: 48px; left: calc(50% - 34px);
+  width: 68px; height: 60px; background: var(--belt); border-radius: 11px; z-index: 4;
+  box-shadow: 0 0 0 6px oklch(0.155 0.014 255), inset 0 -7px 0 oklch(0.8 0.012 85);
+  transform: scale(0) rotate(-22deg); opacity: 0;
+  animation: belt-knot 0.55s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* the belt end tucked through the knot — a vertical strap sitting over the slab */
+.belt__knot::before {
+  content: ""; position: absolute; top: -7px; bottom: -7px; left: calc(50% - 13px);
+  width: 26px; background: var(--belt); border-radius: 7px;
+  box-shadow: inset 0 0 0 1px oklch(0.86 0.01 85), inset 0 -6px 0 oklch(0.8 0.012 85);
+}
+/* short seam stubs on each side of the tucked strap (the band passing under) */
+.belt__knot::after {
+  content: ""; position: absolute; top: 50%; left: 6px; right: 6px; height: 7px;
+  transform: translateY(-50%); border-radius: 2px;
+  background: linear-gradient(90deg,
+    oklch(0.8 0.012 85) 0 30%, transparent 30% 70%, oklch(0.8 0.012 85) 70% 100%);
+}
+
+@keyframes belt-band { to { transform: scaleX(1); } }
+@keyframes belt-knot { 60% { opacity: 1; } to { transform: scale(1) rotate(0deg); opacity: 1; } }
+@keyframes belt-tail-l { to { transform: rotate(-11deg) scaleY(1); } }
+@keyframes belt-tail-r { to { transform: rotate(11deg) scaleY(1); } }
+/* whole-belt cinch pulse near the end (the "pull tight") */
+@keyframes belt-cinch {
+  0%, 62% { transform: scale(1); }
+  70% { transform: scale(1.07); }
+  80% { transform: scale(0.975); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none !important; }
+}

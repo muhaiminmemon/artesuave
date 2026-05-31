@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="bjj" data-accent="red">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Muhaimin Memon · Software & AI/ML Engineer</title>
+  <meta name="description" content="Muhammad Muhaimin Memon, Software & AI/ML Engineer. Computer Science at the University of Toronto. Nokia R&D, Autodesk." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Shippori+Mincho+B1:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="preloader.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+</head>
+<body>
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="pre__hud pre__hud--top">
+      <span class="pre__mark"><i></i>MM / MUHAIMIN</span>
+      <span class="pre__timer">0.00s</span>
+    </div>
+    <div class="pre__stage">
+      <div class="belt">
+        <div class="belt__band"></div>
+        <div class="belt__tail belt__tail--l"></div>
+        <div class="belt__tail belt__tail--r"></div>
+        <div class="belt__knot"></div>
+      </div>
+      <div class="pre__label"><span class="pre__dot"></span> Tying in</div>
+    </div>
+    <div class="pre__hud pre__hud--bottom">
+      <span>Fastening belt</span>
+      <div class="pre__bar"><div class="pre__bar-fill"></div></div>
+      <span>Go →</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var off = false;
+      try { off = localStorage.getItem('mm_intro') === 'off'; } catch (e) {}
+      if (reduce || off) { pre.parentNode && pre.parentNode.removeChild(pre); return; }
+      document.body.classList.add('preloading');
+      var DUR = 1700, t0 = Date.now(), tEl = pre.querySelector('.pre__timer'), done = false;
+      (function loop() {
+        var e = Math.min(DUR, Date.now() - t0);
+        if (tEl) tEl.textContent = (e / 1000).toFixed(2) + 's';
+        if (e < DUR && !done && window.requestAnimationFrame) requestAnimationFrame(loop);
+      })();
+      function finish() {
+        if (done) return; done = true;
+        if (tEl) tEl.textContent = (DUR / 1000).toFixed(2) + 's';
+        pre.classList.add('preloader--done');
+        document.body.classList.remove('preloading');
+        setTimeout(function () { pre.parentNode && pre.parentNode.removeChild(pre); }, 700);
+      }
+      var timer = setTimeout(finish, DUR);
+      ['click', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) {
+        window.addEventListener(ev, function () { clearTimeout(timer); finish(); }, { once: true, passive: true });
+      });
+    })();
+  </script>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="content.js"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="sections-a.jsx"></script>
+  <script type="text/babel" src="sections-b.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

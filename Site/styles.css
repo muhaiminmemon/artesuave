@@ -1,0 +1,241 @@
+/* ============================================================
+   MUHAIMIN — PORTFOLIO  ·  "Telemetry"
+   Bold Swiss editorial × F1 timing-screen
+   ============================================================ */
+
+/* ---------- THEME TOKENS ---------- */
+:root {
+  /* accent (overridden by [data-accent]) */
+  --accent: oklch(0.585 0.221 25);
+  --accent-2: oklch(0.66 0.20 28);
+  --on-accent: oklch(0.98 0.004 85);
+
+  --maxw: 1340px;
+  --gutter: clamp(18px, 4.5vw, 64px);
+  --rule: 2px;
+
+  --ff-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --ff-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --ff-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* PAPER — light Swiss poster (default) */
+[data-theme="paper"] {
+  --paper: oklch(0.971 0.006 85);
+  --paper-2: oklch(0.945 0.008 85);
+  --ink: oklch(0.165 0.012 60);
+  --ink-soft: oklch(0.46 0.012 60);
+  --ink-faint: oklch(0.66 0.01 60);
+  --line: oklch(0.165 0.012 60);
+  --line-soft: oklch(0.84 0.008 85);
+  --panel: oklch(0.985 0.004 85);
+  --shadow: 0 1px 0 oklch(0.165 0.012 60 / 0.08);
+}
+
+/* TELEMETRY — dark broadcast screen */
+[data-theme="telemetry"] {
+  --paper: oklch(0.165 0.014 255);
+  --paper-2: oklch(0.205 0.016 255);
+  --ink: oklch(0.96 0.005 85);
+  --ink-soft: oklch(0.72 0.012 255);
+  --ink-faint: oklch(0.55 0.014 255);
+  --line: oklch(0.34 0.018 255);
+  --line-soft: oklch(0.28 0.016 255);
+  --panel: oklch(0.205 0.016 255);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.3);
+}
+
+/* MONO — stark black & white */
+[data-theme="mono"] {
+  --paper: oklch(0.985 0.001 90);
+  --paper-2: oklch(0.93 0.001 90);
+  --ink: oklch(0.13 0 0);
+  --ink-soft: oklch(0.40 0 0);
+  --ink-faint: oklch(0.62 0 0);
+  --line: oklch(0.13 0 0);
+  --line-soft: oklch(0.82 0 0);
+  --panel: oklch(1 0 0);
+  --accent: oklch(0.13 0 0);
+  --accent-2: oklch(0.30 0 0);
+  --on-accent: oklch(0.985 0.001 90);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.06);
+}
+
+/* RED BULL — Oracle navy, RB red, with yellow on the numerals */
+[data-theme="redbull"] {
+  --paper: oklch(0.215 0.072 265);
+  --paper-2: oklch(0.265 0.078 265);
+  --ink: oklch(0.96 0.018 250);
+  --ink-soft: oklch(0.78 0.04 255);
+  --ink-faint: oklch(0.62 0.05 258);
+  --line: oklch(0.43 0.075 262);
+  --line-soft: oklch(0.33 0.06 263);
+  --panel: oklch(0.265 0.078 265);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.35);
+}
+
+/* GRACIE / ARTE SUAVE — gi-white, navy ink, red + blue, mincho serif display */
+[data-theme="bjj"] {
+  --paper: oklch(0.975 0.003 250);
+  --paper-2: oklch(0.945 0.005 250);
+  --ink: oklch(0.185 0.028 262);
+  --ink-soft: oklch(0.42 0.03 262);
+  --ink-faint: oklch(0.60 0.03 262);
+  --line: oklch(0.185 0.028 262);
+  --line-soft: oklch(0.86 0.012 250);
+  --panel: oklch(0.99 0.002 250);
+  --shadow: 0 1px 0 oklch(0.185 0.028 262 / 0.08);
+  --ff-display: "Shippori Mincho B1", "Yu Mincho", Georgia, serif;
+}
+/* mincho serif wants a little more breathing room than the grotesque */
+[data-theme="bjj"] .hero__name,
+[data-theme="bjj"] h2.kicker,
+[data-theme="bjj"] .display,
+[data-theme="bjj"] .project__name,
+[data-theme="bjj"] .stat__v,
+[data-theme="bjj"] .metric__v { letter-spacing: -0.01em; }
+
+/* LAKERS — royal purple, gold accent */
+[data-theme="lakers"] {
+  --paper: oklch(0.285 0.125 305);
+  --paper-2: oklch(0.34 0.13 305);
+  --ink: oklch(0.97 0.02 95);
+  --ink-soft: oklch(0.82 0.055 305);
+  --ink-faint: oklch(0.67 0.075 305);
+  --line: oklch(0.47 0.12 305);
+  --line-soft: oklch(0.39 0.11 305);
+  --panel: oklch(0.34 0.13 305);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.3);
+}
+
+/* ---------- ACCENT VARIANTS ---------- */
+[data-accent="red"]  { --accent: oklch(0.585 0.221 25);  --accent-2: oklch(0.66 0.20 30);  --on-accent: oklch(0.98 0.004 85); }
+[data-accent="blue"] { --accent: oklch(0.55 0.18 256);   --accent-2: oklch(0.63 0.16 252); --on-accent: oklch(0.98 0.004 85); }
+[data-accent="lime"] { --accent: oklch(0.84 0.21 122);   --accent-2: oklch(0.88 0.19 120); --on-accent: oklch(0.18 0.04 130); }
+/* mono theme forces black accent regardless of data-accent */
+[data-theme="mono"] { --accent: oklch(0.13 0 0) !important; --accent-2: oklch(0.30 0 0) !important; --on-accent: oklch(0.985 0.001 90) !important; }
+/* red bull forces its own red + yellow regardless of data-accent */
+[data-theme="redbull"] { --accent: oklch(0.585 0.225 27) !important; --accent-2: oklch(0.86 0.17 92) !important; --on-accent: oklch(0.98 0.01 90) !important; }
+/* gracie forces red primary + blue secondary regardless of data-accent */
+[data-theme="bjj"] { --accent: oklch(0.555 0.21 26) !important; --accent-2: oklch(0.48 0.16 256) !important; --on-accent: oklch(0.98 0.004 250) !important; }
+/* lakers forces purple base + gold accent */
+[data-theme="lakers"] { --accent: oklch(0.82 0.155 88) !important; --accent-2: oklch(0.89 0.13 92) !important; --on-accent: oklch(0.22 0.09 305) !important; }
+/* RB yellow accent on the small numerals / index labels for that bull energy */
+[data-theme="redbull"] .eyebrow .idx,
+[data-theme="redbull"] .stat__no,
+[data-theme="redbull"] .stats__cap-a,
+[data-theme="redbull"] .skillcol__h,
+[data-theme="redbull"] .bcard__label { color: var(--accent-2); }
+/* lakers: gold on the small numerals too */
+[data-theme="lakers"] .eyebrow .idx,
+[data-theme="lakers"] .stat__no,
+[data-theme="lakers"] .stats__cap-a { color: var(--accent-2); }
+/* gracie: blue on the small numerals (red/white/blue) */
+[data-theme="bjj"] .eyebrow .idx,
+[data-theme="bjj"] .stat__no,
+[data-theme="bjj"] .stats__cap-a { color: var(--accent-2); }
+
+/* ---------- RESET ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-weight: 500;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv01";
+  transition: background 0.45s var(--ease), color 0.45s var(--ease);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+/* ---------- LAYOUT PRIMITIVES ---------- */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+
+.section { border-top: var(--rule) solid var(--line); }
+.section__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line-soft);
+}
+.eyebrow {
+  font-family: var(--ff-mono); font-size: 0.74rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow .idx { color: var(--accent); }
+.eyebrow .dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; display: inline-block; }
+
+/* ---------- TYPE ---------- */
+.display {
+  font-family: var(--ff-display); font-weight: 900;
+  line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase;
+}
+h2.kicker {
+  font-family: var(--ff-display); font-weight: 800;
+  font-size: clamp(1.7rem, 4.4vw, 3.4rem); line-height: 0.96;
+  letter-spacing: -0.025em; text-wrap: balance;
+}
+.mono { font-family: var(--ff-mono); }
+.tag {
+  font-family: var(--ff-mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ---------- BUTTONS / LINKS ---------- */
+.btn {
+  font-family: var(--ff-mono); font-weight: 700; font-size: 0.82rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border: var(--rule) solid var(--line);
+  background: var(--ink); color: var(--paper); cursor: pointer;
+  text-decoration: none; transition: transform 0.18s var(--ease), background 0.2s, color 0.2s;
+}
+.btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--accent); }
+.btn--accent { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { box-shadow: 4px 4px 0 var(--line); }
+
+.ilink {
+  color: var(--ink); text-decoration: none; position: relative;
+  font-family: var(--ff-mono); font-weight: 700;
+}
+.ilink::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 100%;
+  height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.ilink:hover::after { transform: scaleX(1); }
+
+/* ---------- REVEAL ANIM ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+/* Fallback for environments with a frozen animation clock (offscreen/throttled tabs):
+   show everything instantly, no transition that could stick at opacity 0. */
+html.no-anim .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+/* In a frozen-clock context, also disable all transitions/animations so theme
+   swaps and other state changes apply instantly instead of sticking mid-tween. */
+html.no-anim *, html.no-anim *::before, html.no-anim *::after { transition: none !important; animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- TICKER ---------- */
+.ticker { overflow: hidden; border-block: 1px solid var(--line-soft); }
+.ticker__track { display: inline-flex; white-space: nowrap; will-change: transform; animation: ticker 38s linear infinite; }
+.ticker:hover .ticker__track { animation-play-state: paused; }
+.ticker__item {
+  font-family: var(--ff-mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft); padding: 12px 0; display: inline-flex; align-items: center;
+}
+.ticker__item b { color: var(--ink); }
+.ticker__sep { color: var(--accent); padding: 0 22px; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker__track { animation: none; } }
+
+#root { min-height: 100vh; }
