@@ -121,7 +121,7 @@ window.PORTFOLIO = {
       detail:
         "Tessera-trained Llama-3.2-3B reaches 97.1% of real-data F1 on Banking77 for $0.40 vs. $125 crowd-sourced. Shipped with CI/CD, thread-safe parallel generation, and multi-provider routing (OpenAI, Anthropic, Together, Groq).",
       stack: ["Python", "OpenAI API", "ChromaDB", "sentence-transformers", "Pydantic", "Unsloth"],
-      link: "https://github.com/muhaiminmemon",
+      link: "https://github.com/muhaiminmemon/tessera/tree/master",
       linkLabel: "GitHub",
     },
     {
