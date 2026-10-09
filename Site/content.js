@@ -45,9 +45,11 @@ window.PORTFOLIO = {
       date: "May 2026 – Aug 2026",
       status: "",
       points: [
-        "Building MLOps pipelines and infrastructure to deploy and monitor ML models and LLM-based agents in production.",
+        "Engineered Watchtower, an autonomous incident-response agent serving 5 production teams, automating manual triage and outperforming the incumbent commercial AIOps tool on the same production incidents.",
+        "Built an offline evaluation harness for a non-deterministic LLM system, combining rubric-based automated scoring with a human-labeled feedback store to make prompt and model changes measurable rather than anecdotal.",
+        "Co-designed a shared SageMaker Feature Store schema serving 3 production models (content recommender, propensity, churn), joining fixed-window (7/14/30/60-day) and trial-anchored aggregates in one dual-CTE daily job.",
       ],
-      stack: ["MLOps", "LLM agents", "Monitoring"],
+      stack: ["LLM agents", "AIOps", "LLM evals", "SageMaker", "Feature Store"],
     },
     {
       no: "02",
@@ -57,39 +59,38 @@ window.PORTFOLIO = {
       date: "Jan 2026 – Apr 2026",
       status: "",
       points: [
-        "Architected and shipped a LangGraph multi-agent system for Nokia 5G troubleshooting, cutting query resolution from 2–3 min to 30–40s via ChromaDB, Redis & Kubernetes over MCP.",
-        "Built a two-tier Redis semantic cache with cosine-similarity lookup, reducing LLM inference costs by ~60%.",
-        "Engineered a Crossplane edge-deployment system with custom Kubernetes operators in Go, cutting provisioning from 2 hrs to under 5 min (~95%).",
-        "Built a fault-tolerant Python Kafka sync service between hub & edge clusters sustaining 40+ msgs/sec with header-based deduplication.",
+        "Architected and shipped a LangGraph multi-agent AI system for Nokia 5G troubleshooting, cutting query resolution from 2–5 hours to 2–5 minutes via ChromaDB, Redis & Kubernetes integration over MCP.",
+        "Identified inference latency bottlenecks and built a two-tier Redis semantic cache with cosine-similarity lookup, reducing LLM inference costs by ~60%.",
+        "Engineered a Crossplane-based edge deployment system with custom Kubernetes operators in Go, reducing provisioning time from 2 hours to under 5 minutes (~95%) and eliminating manual configuration errors.",
+        "Built a fault-tolerant Python Kafka sync service between hub and edge clusters, sustaining 40+ msgs/sec while eliminating replication loops via header-based deduplication and LRU caching.",
       ],
       stack: ["LangGraph", "Go", "Kubernetes", "Redis", "Kafka", "Crossplane"],
     },
     {
       no: "03",
+      role: "Software Engineer",
+      org: "Mercor",
+      loc: "Remote",
+      date: "Aug 2025 – Nov 2025",
+      status: "",
+      points: [
+        "Shipped 20+ patches across production open-source Python and C codebases (scikit-learn, sqlite-net), spanning features, refactors, and regression fixes validated against existing test suites.",
+        "Drove multi-turn agentic sessions (Claude Code, Codex) from natural-language specs to working patches, decomposing requirements and correcting model reasoning, with session rationales used as training signal for frontier code models.",
+      ],
+      stack: ["Python", "C", "scikit-learn", "Claude Code", "Codex"],
+    },
+    {
+      no: "04",
       role: "Machine Learning Engineer",
       org: "Outamation",
       loc: "Remote",
       date: "May 2025 – Jul 2025",
       status: "",
       points: [
-        "Designed a computer-vision pipeline pairing PyMuPDF OCR with custom NLP models to extract structured data from unstructured documents, achieving an F1 of 0.95.",
-        "Built a RAG retrieval system with LlamaIndex that improved search accuracy 40% over keyword search.",
-        "Benchmarked GPT-4, Llama-3 & Mistral-7B with embedding similarity and response scoring to pick the production model.",
+        "Designed and deployed a computer vision pipeline integrating PyMuPDF OCR with custom NLP models to extract structured data from unstructured documents, achieving an F1-score of 0.95.",
+        "Built a RAG-based retrieval system with LlamaIndex that improved information search accuracy by 40% over keyword search, enabling faster retrieval of relevant clauses across the document repository.",
       ],
       stack: ["PyMuPDF", "NLP", "LlamaIndex", "RAG"],
-    },
-    {
-      no: "04",
-      role: "Software Engineer",
-      org: "DataAnnotation.tech",
-      loc: "Toronto, ON",
-      date: "Sep 2024 – Dec 2024",
-      status: "",
-      points: [
-        "Developed Python tooling to process and validate AI/ML training datasets, cutting manual processing time 30%.",
-        "Fine-tuned transformer LLMs via prompt engineering and hyperparameter optimization for sentiment & classification.",
-      ],
-      stack: ["Python", "LLM fine-tuning"],
     },
     {
       no: "05",
@@ -99,14 +100,30 @@ window.PORTFOLIO = {
       date: "Jan 2024 – Aug 2024",
       status: "",
       points: [
-        "Built a PowerShell + Microsoft Graph tool to create and analyze 400+ Azure access reviews, cutting manual audit effort 90%.",
-        "Maintained Python ETL pipelines ingesting 120+ feeds across Azure, GitLab & Active Directory, flagging ~500 inconsistencies.",
+        "Automated 400+ Azure access reviews with PowerShell and Microsoft Graph API, cutting manual audit effort by 90%, and built Python ETL pipelines validating identity records across Azure, GitLab, and Active Directory.",
       ],
       stack: ["PowerShell", "Graph API", "Azure", "ETL"],
     },
   ],
 
   projects: [
+    {
+      name: "Tenpoint",
+      type: "Social web app",
+      tagline: "A social Letterboxd competitor with precise 10-point ratings.",
+      desc:
+        "Shareable taste cards and side-by-side taste comparisons between friends, plus Letterboxd and MyAnimeList import.",
+      metrics: [
+        { v: "2,300+", k: "ratings from real users" },
+        { v: "10-pt", k: "precise rating scale" },
+        { v: "5", k: "recommender signals" },
+      ],
+      detail:
+        "Two-stage retrieval + ranking recommender: MiniLM embedding neighbours assemble a per-pair candidate pool, then 5 confidence-weighted signals led by mean-centred user CF predict each friend's rating, with a fairness penalty sinking lopsided picks.",
+      stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Transformers.js", "Docker", "Railway"],
+      link: "https://tenpoint.site",
+      linkLabel: "Live",
+    },
     {
       name: "Tessera",
       type: "Open-source library",
